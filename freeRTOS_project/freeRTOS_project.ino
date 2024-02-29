@@ -10,6 +10,13 @@ void toggleLED(void *parameter){
   }
 }
 
+void printing(void *parameter){
+  for(;;){
+    printf("Task 1\n");
+    vTaskDelay(1000 / portTICK_PERIOD_MS);
+  }
+}
+
 void setup() {
   pinMode(led_pin, OUTPUT);
 
@@ -21,6 +28,14 @@ void setup() {
     NULL,             // Parameter to pass to function
     1,                // Task priority (0 to configMAX_PRIORITIES)
     NULL);            // Task handle
+
+xTaskCreate(
+    printing,
+    "Task1 print",
+    1024,
+    NULL,
+    1,
+    NULL);
 
   
 //vTaskStartScheduler();    // The setup function calls this function itself, but it is in the comment to make it clear that it normally needs to be done
