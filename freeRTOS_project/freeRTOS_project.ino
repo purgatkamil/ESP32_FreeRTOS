@@ -50,7 +50,7 @@ static void Receiver(void *parameter){
     xStatus = xQueueReceive(MyQueue, &receivedValue, xTicksToWait);
 
     if(xStatus == pdPASS){
-      printf("Receiver: Received = %d", receivedValue);
+      printf("Receiver: Received = %d\n\r", receivedValue);
     }
     else{
       printf("Receiver: Could not receive from the queue\r\n");
@@ -70,8 +70,8 @@ if(MyQueue != NULL){
 xTaskCreate(
   Sender,                   // Function to be called
   "Task1: Sender",          // Name of task
-  1000,                     // Stack size
-  (void*)100,  // Parameter to pass to function
+  2000,                     // Stack size
+  (void*)100,               // Parameter to pass to function
   1,                        // Task priority (0 to configMAX_PRIORITIES)
   NULL                      // Task handle
 );
@@ -79,7 +79,7 @@ xTaskCreate(
 xTaskCreate(
   Receiver,
   "Task2: Receiver",
-  1000,
+  2000,
   NULL,
   1,
   NULL
